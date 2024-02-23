@@ -4,8 +4,8 @@ export default function Index(): JSX.Element {
   return (
     <div className="container">
       <h1 className="title">
-        Blog <br />
-        <span>Kitchen Sink</span>
+        Bithuis <br />
+        <span>Admin Site</span>
       </h1>
       <CounterButton />
       <p className="description">
