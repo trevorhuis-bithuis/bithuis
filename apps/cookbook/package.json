@@ -8,8 +8,9 @@
     "dev": "remix dev",
     "typecheck": "tsc --noEmit",
     "lint": "eslint app/",
-    "db:migrate": "npx tsx app/db/migrate.server.ts",
-    "db:generate": "npx drizzle-kit generate:sqlite"
+    "db:migrate": "npx tsx app/db/migrate.ts",
+    "db:generate": "npx drizzle-kit generate:sqlite",
+    "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@libsql/client": "^0.5.2",
@@ -20,7 +21,9 @@
     "@repo/ui": "*",
     "@vercel/analytics": "^1.1.1",
     "@vercel/remix-entry-server": "^0.1.1",
+    "bcryptjs": "^2.4.3",
     "drizzle-orm": "^0.29.4",
+    "drizzle-zod": "^0.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -28,6 +31,7 @@
     "@remix-run/dev": "^2.4.1",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@types/bcryptjs": "^2.4.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "drizzle-kit": "^0.20.14",

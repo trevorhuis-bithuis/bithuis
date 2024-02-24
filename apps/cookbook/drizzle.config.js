@@ -2,7 +2,7 @@ import "dotenv/config";
 
 /** @type { import("drizzle-kit").Config } */
 export default {
-  schema: "./app/db/schema.server.ts",
+  schema: "./app/db/schema/*",
   out: "./migrations",
   driver: "turso",
   dbCredentials: {

@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1708803925373,
-      "tag": "0000_clean_gideon",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1708805114202,
-      "tag": "0001_clean_ego",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1708805410866,
-      "tag": "0002_clumsy_spot",
+      "when": 1708809556547,
+      "tag": "0000_boring_chimera",
       "breakpoints": true
     }
   ]
