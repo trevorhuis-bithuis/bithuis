@@ -4,7 +4,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm run db:generate && remix build",
+    "build": "npm run db:migrate && remix build",
     "dev": "remix dev",
     "typecheck": "tsc --noEmit",
     "lint": "eslint app/",
