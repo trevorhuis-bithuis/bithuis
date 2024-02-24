@@ -15,7 +15,7 @@ export const recipeIngredients = sqliteTable("recipe_ingredient", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   recipeId: integer("recipe_id", { mode: "number" })
     .notNull()
-    .references(() => recipes.id, { onDelete: 'cascade' }),
+    .references(() => recipes.id, { onDelete: "cascade" }),
   ingredient: text("ingredient").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
@@ -25,7 +25,7 @@ export const recipeSteps = sqliteTable("recipe_step", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   recipeId: integer("recipe_id", { mode: "number" })
     .notNull()
-    .references(() => recipes.id, { onDelete: 'cascade' }),
+    .references(() => recipes.id, { onDelete: "cascade" }),
   step: text("step").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
@@ -35,7 +35,7 @@ export const recipeTags = sqliteTable("recipe_tag", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   recipeId: integer("recipe_id", { mode: "number" })
     .notNull()
-    .references(() => recipes.id, { onDelete: 'cascade' }),
+    .references(() => recipes.id, { onDelete: "cascade" }),
   tag: text("tag").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
@@ -45,7 +45,7 @@ export const recipeImages = sqliteTable("recipe_image", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   recipeId: integer("recipe_id", { mode: "number" })
     .notNull()
-    .references(() => recipes.id, { onDelete: 'cascade' }),
+    .references(() => recipes.id, { onDelete: "cascade" }),
   url: text("url").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
@@ -57,11 +57,17 @@ export const selectRecipeSchema = createSelectSchema(recipes);
 export type InsertRecipeSchema = z.infer<typeof insertRecipeSchema>;
 export type SelectRecipeSchema = z.infer<typeof selectRecipeSchema>;
 
-export const insertRecipeIngredientSchema = createInsertSchema(recipeIngredients);
-export const selectRecipeIngredientSchema = createSelectSchema(recipeIngredients);
+export const insertRecipeIngredientSchema =
+  createInsertSchema(recipeIngredients);
+export const selectRecipeIngredientSchema =
+  createSelectSchema(recipeIngredients);
 
-export type InsertRecipeIngredientSchema = z.infer<typeof insertRecipeIngredientSchema>;
-export type SelectRecipeIngredientSchema = z.infer<typeof selectRecipeIngredientSchema>;
+export type InsertRecipeIngredientSchema = z.infer<
+  typeof insertRecipeIngredientSchema
+>;
+export type SelectRecipeIngredientSchema = z.infer<
+  typeof selectRecipeIngredientSchema
+>;
 
 export const insertRecipeStepSchema = createInsertSchema(recipeSteps);
 export const selectRecipeStepSchema = createSelectSchema(recipeSteps);

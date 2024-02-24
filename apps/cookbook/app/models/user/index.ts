@@ -1,8 +1,11 @@
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 import { db } from "../../db/db";
-import { users, SelectUserSchema, InsertUserSchema } from "../../db/schema/user";
-
+import {
+  users,
+  SelectUserSchema,
+  InsertUserSchema,
+} from "../../db/schema/user";
 
 export async function getUserById(
   id: SelectUserSchema["id"],
@@ -20,10 +23,10 @@ export async function getUserByEmail(
   return user[0];
 }
 
-export async function createUser(data: InsertUserSchema) {
+export async function createUser(data: InsertUserSchema): Promise<InsertUserSchema["id"]>{
   const existingUser = await getUserByEmail(data.email);
 
-  if (existingUser) return false;
+  if (existingUser) return undefined;
 
   const hashedPassword = await bcrypt.hash(data.password, 10);
 
@@ -32,7 +35,9 @@ export async function createUser(data: InsertUserSchema) {
     password: hashedPassword,
   };
 
-  await db.insert(users).values(userWithHashedPassword);
+  const userId = await db.insert(users).values(userWithHashedPassword).returning({ insertedId: users.id });
+
+  return userId[0].insertedId
 }
 
 export async function deleteUserByEmail(email: SelectUserSchema["email"]) {
@@ -42,11 +47,11 @@ export async function deleteUserByEmail(email: SelectUserSchema["email"]) {
 export async function verifyLogin(email: string, password: string) {
   const user = await getUserByEmail(email);
 
-  if (!user) return false;
+  if (!user) throw new Error("User not found");
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
-    return null;
+    throw new Error("Invalid password");
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
