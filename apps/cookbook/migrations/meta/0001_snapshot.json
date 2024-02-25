@@ -1,8 +1,8 @@
 {
+  "id": "4d1e6e21-0500-48a1-8d70-77a364363bf2",
+  "prevId": "0f706181-ea23-40e9-a3fe-1454b2767d06",
   "version": "5",
   "dialect": "sqlite",
-  "id": "0f706181-ea23-40e9-a3fe-1454b2767d06",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "recipe_image": {
       "name": "recipe_image",
@@ -50,15 +50,15 @@
         "recipe_image_recipe_id_recipe_id_fk": {
           "name": "recipe_image_recipe_id_recipe_id_fk",
           "tableFrom": "recipe_image",
-          "tableTo": "recipe",
           "columnsFrom": [
             "recipe_id"
           ],
+          "tableTo": "recipe",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -110,15 +110,15 @@
         "recipe_ingredient_recipe_id_recipe_id_fk": {
           "name": "recipe_ingredient_recipe_id_recipe_id_fk",
           "tableFrom": "recipe_ingredient",
-          "tableTo": "recipe",
           "columnsFrom": [
             "recipe_id"
           ],
+          "tableTo": "recipe",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -177,15 +177,15 @@
         "recipe_step_recipe_id_recipe_id_fk": {
           "name": "recipe_step_recipe_id_recipe_id_fk",
           "tableFrom": "recipe_step",
-          "tableTo": "recipe",
           "columnsFrom": [
             "recipe_id"
           ],
+          "tableTo": "recipe",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -237,15 +237,15 @@
         "recipe_tag_recipe_id_recipe_id_fk": {
           "name": "recipe_tag_recipe_id_recipe_id_fk",
           "tableFrom": "recipe_tag",
-          "tableTo": "recipe",
           "columnsFrom": [
             "recipe_id"
           ],
+          "tableTo": "recipe",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -383,8 +383,8 @@
   },
   "enums": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
+    "tables": {}
   }
 }

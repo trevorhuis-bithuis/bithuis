@@ -5,8 +5,12 @@ import { z } from "zod";
 
 export const recipes = sqliteTable("recipe", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  title: text("title").notNull(),
+  title: text("title").notNull().unique(),
   description: text("description").notNull(),
+  slug: text("slug").notNull().unique(),
+  prepTime: integer("prep_time", { mode: "number" }),
+  cookTime: integer("cook_time", { mode: "number" }),
+  servings: integer("servings", { mode: "number" }),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });
@@ -27,6 +31,7 @@ export const recipeSteps = sqliteTable("recipe_step", {
     .notNull()
     .references(() => recipes.id, { onDelete: "cascade" }),
   step: text("step").notNull(),
+  stepNumber: integer("step_number", { mode: "number" }).notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });

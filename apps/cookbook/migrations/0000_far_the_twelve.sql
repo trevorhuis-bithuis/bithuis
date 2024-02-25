@@ -20,6 +20,7 @@ CREATE TABLE `recipe_step` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`recipe_id` integer NOT NULL,
 	`step` text NOT NULL,
+	`step_number` integer NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP,
 	`updated_at` text DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (`recipe_id`) REFERENCES `recipe`(`id`) ON UPDATE no action ON DELETE cascade
@@ -38,6 +39,7 @@ CREATE TABLE `recipe` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`title` text NOT NULL,
 	`description` text NOT NULL,
+	`slug` text NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP,
 	`updated_at` text DEFAULT CURRENT_TIMESTAMP
 );
@@ -51,4 +53,6 @@ CREATE TABLE `user` (
 	`updated_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `recipe_title_unique` ON `recipe` (`title`);--> statement-breakpoint
+CREATE UNIQUE INDEX `recipe_slug_unique` ON `recipe` (`slug`);--> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);

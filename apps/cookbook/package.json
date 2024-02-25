@@ -11,8 +11,8 @@
     "db:migrate": "npx tsx app/db/migrate.ts",
     "db:generate": "npx drizzle-kit generate:sqlite",
     "db:studio": "npx drizzle-kit studio",
-    "db:new": "rm local.db && npm run db:migrate",
-    "test": "npx tsx app/db/delete.ts && vitest run"
+    "db:new": "rm local.db && npm run db:generate && npm run db:migrate",
+    "test": "vitest run"
   },
   "dependencies": {
     "@libsql/client": "^0.5.2",

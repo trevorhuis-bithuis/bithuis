@@ -1,11 +1,33 @@
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
-import { db } from "../../db/db";
+import { db } from "../db/db";
 import {
   users,
   SelectUserSchema,
   InsertUserSchema,
-} from "../../db/schema/user";
+} from "../db/schema/user";
+
+export async function createUser(
+  data: InsertUserSchema,
+): Promise<InsertUserSchema["id"]> {
+  const existingUser = await getUserByEmail(data.email);
+
+  if (existingUser) return undefined;
+
+  const hashedPassword = await bcrypt.hash(data.password, 10);
+
+  const userWithHashedPassword = {
+    ...data,
+    password: hashedPassword,
+  };
+
+  const userId = await db
+    .insert(users)
+    .values(userWithHashedPassword)
+    .returning({ insertedId: users.id });
+
+  return userId[0].insertedId;
+}
 
 export async function getUserById(
   id: SelectUserSchema["id"],
@@ -21,23 +43,6 @@ export async function getUserByEmail(
   const user = await db.select().from(users).where(eq(users.email, email));
 
   return user[0];
-}
-
-export async function createUser(data: InsertUserSchema): Promise<InsertUserSchema["id"]>{
-  const existingUser = await getUserByEmail(data.email);
-
-  if (existingUser) return undefined;
-
-  const hashedPassword = await bcrypt.hash(data.password, 10);
-
-  const userWithHashedPassword = {
-    ...data,
-    password: hashedPassword,
-  };
-
-  const userId = await db.insert(users).values(userWithHashedPassword).returning({ insertedId: users.id });
-
-  return userId[0].insertedId
 }
 
 export async function deleteUserByEmail(email: SelectUserSchema["email"]) {
